@@ -1,0 +1,404 @@
+-----------------------LINKED LIST CREATION---------------------
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *link;
+};
+int main(){
+    struct node *a,*head=NULL,*temp,*t;
+    int choice=1;
+    while(choice){
+        a=malloc(sizeof(struct node));
+        a->link=NULL;
+        printf("Enter the data: ");
+        scanf("%d",&a->data);
+        if(head==NULL){
+            head=temp=a;
+        }
+        else{
+            temp->link=a;
+            temp=a;
+        }
+        printf("Enter your choice(0,1): ");
+        scanf("%d",&choice);
+    }
+    t=head;
+    while(t!=NULL){
+        printf("%d ",t->data);
+        t=t->link;
+    }
+}
+
+--------------------------INSERTION-----------------------------------------
+
+FIRST POSITION:
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+int main(){
+    struct node *a,*head=NULL,*temp;
+    int choice=1,c=0;
+    while(choice){
+        a=malloc(sizeof(struct node));
+        a->next=NULL;
+        printf("Enter the data: ");
+        scanf("%d",&a->data);
+        if(head==NULL){
+            head=temp=a;
+            c++;
+        }
+        else{
+            temp->next=a;
+            temp=a;
+            c++;
+        }
+        printf("Enter your choice: ");
+        scanf("%d",&choice);
+    }
+    printf("No of nodes: %d",c);
+    printf("\nThe values are: ");
+    temp=head;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    //Insertion at 1st pos
+    struct node *b=malloc(sizeof(struct node));
+    printf("\nEnter the data: ");
+    scanf("%d",&b->data);
+    b->next=head;
+    head=b;
+    c++;
+    printf("No of nodes: %d",c);
+    printf("\nThe values are: ");
+    temp=head;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+
+ANY POSITION:
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+int main(){
+    struct node *a,*head=NULL,*temp;
+    int choice=1,c=0;
+    while(choice){
+        a=malloc(sizeof(struct node));
+        a->next=NULL;
+        printf("Enter the data: ");
+        scanf("%d",&a->data);
+        if(head==NULL){
+            head=temp=a;
+            c++;
+        }
+        else{
+            temp->next=a;
+            temp=a;
+            c++;
+        }
+        printf("Enter your choice: ");
+        scanf("%d",&choice);
+    }
+    printf("No of nodes: %d",c);
+    printf("\nThe values are: ");
+    temp=head;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    //Insertion at any pos
+    struct node *b=malloc(sizeof(struct node));
+    int i=1,pos;
+    printf("Enter the position: ");
+    scanf("%d",&pos);
+    printf("\nEnter the data: ");
+    scanf("%d",&b->data);
+    if(pos>c){
+        printf("INVALID CHOICE");
+    }
+    else{
+        temp=head;
+        while(i<pos-1){
+            temp=temp->next;
+            i++;
+        }
+        b->next=temp->next;
+        temp->next=b;
+        c++;
+    }
+    printf("No of nodes: %d",c);
+    printf("\nThe values are: ");
+    temp=head;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+
+INSERTION AT END: 
+
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+int main(){
+    struct node *a,*head=NULL,*temp;
+    int choice=1,c=0;
+    while(choice){
+        a=malloc(sizeof(struct node));
+        a->next=NULL;
+        printf("Enter the data: ");
+        scanf("%d",&a->data);
+        if(head==NULL){
+            head=temp=a;
+            c++;
+        }
+        else{
+            temp->next=a;
+            temp=a;
+            c++;
+        }
+        printf("Enter your choice: ");
+        scanf("%d",&choice);
+    }
+    printf("No of nodes: %d",c);
+    printf("\nThe values are: ");
+    temp=head;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+    struct node *b=malloc(sizeof(struct node));
+    //Insertion at end
+    printf("\nEnter the data: ");
+    scanf("%d",&b->data);
+    temp=head;
+    while(temp->next!=NULL){
+        temp=temp->next;
+    }
+    b->next=NULL;
+    temp->next=b;
+    c++;
+    temp=head;
+    printf("No of nodes: %d",c);
+    printf("\nThe values are: ");
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+--------------------------Linked list creation without using scanf--------------------------
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+struct node *create(struct node *head,int data){
+    struct node *a=malloc(sizeof(struct node)),*temp;
+    a->data=data;
+    if(head==NULL){
+        a->next=head;
+        head=temp=a;
+    }
+    else{
+        a->next=NULL;
+        temp->next=a;
+        temp=a;
+    }
+};
+void print(struct node *head){
+    struct node* temp=head;
+    while(temp!=NULL){
+        printf("%d ",temp->data);
+        temp=temp->next;
+    }
+}
+int main(){
+    struct node *head=NULL;
+    head=create(head,10);
+    create(head,20);
+    create(head,30);
+    print(head);
+    return 0;
+}
+---------------------Stack using array------------------------
+#include <stdio.h>
+#include <stdlib.h>
+int a[100],n=100,top=-1;
+void push(int data){
+    if(top==n-1){
+        printf("Stack overflow");
+    }
+    else{
+        top++;
+        a[top]=data;
+    }
+}
+void pop(){
+    if(top==-1){
+        printf("Stack underflow");
+    }
+    else{
+        printf("The popped element: %d\n",a[top]);
+        top--;
+    }
+}
+void peek(){
+    printf("The topmost element of the stack is: %d\n",a[top]);
+}
+int main(){
+    push(10);
+    push(20);
+    push(30);
+    pop();
+    pop();
+    peek();
+    pop();
+    pop();
+    return 0;
+}
+-----------------------------Stack using linked list-----------------------------
+#include <stdio.h>
+#include <stdlib.h>
+struct node{
+    int data;
+    struct node *next;
+};
+struct node *push(struct node *head,int data){
+    struct node *a=malloc(sizeof(struct node));
+    a->data=data;
+    a->next=head;
+    head=a;
+}
+struct node *pop(struct node *head){
+    if(head==NULL){
+        printf("Stack underflow\n");
+    }
+    else{
+        struct node *temp=head;
+        head=temp->next;
+        printf("The popped element: %d\n",temp->data);
+        free(temp);
+    }
+    return head;
+}
+void peek(struct node *head){
+    printf("The element in the top of the stack: %d\n",head->data);
+}
+int main(){
+    struct node *head=NULL;
+    head=push(head,10);
+    head=push(head,20);
+    head=push(head,30);
+    head=pop(head);
+    head=pop(head);
+    peek(head);
+    head=pop(head);
+    head=pop(head);
+    return 0;
+}
+
+-------------------------Quick sort---------------------
+#include <stdio.h>
+void swap(int *a,int *b){
+    int temp=*a;
+    *a=*b;
+    *b=temp;
+}
+int par(int a[],int low,int high){
+    int p=a[high];
+    int i=low-1,j;
+    for(j=low;j<high-1;j++){
+        if(a[j]<p){
+            i++;
+            swap(&a[i],&a[j]);
+        }
+    }
+    swap(&a[i+1],&a[high]);
+    return i+1;
+}
+void quick(int a[],int low,int high){
+    if(low<high){
+        int x=par(a,low,high);
+        quick(a,low,x-1);
+        quick(a,x+1,high);
+    }
+}
+int main(){
+    int a[]={3,5,2,6,7,9,1},i;
+    int low=0,n=sizeof(a)/sizeof(a[0]),high=n-1;
+    quick(a,low,high);
+    printf("Sorted array: ");
+    for(i=0;i<n;i++){
+        printf("%d ",a[i]);
+    }
+    return 0;
+}
+----------------------insertion sort---------------------------------
+#include <stdio.h>
+void insert(int a[], int n){
+    int i,j,key;
+    for(i=1;i<n;i++){
+        key=a[i];
+        j=i-1;
+        while(j>=0 && a[j]>key){
+            a[j+1]=a[j];
+            j=j-1;
+        }
+        a[j+1]=key;   
+    }
+    for(i=0;i<n;i++){
+        printf("%d ",a[i]);
+    }
+}
+int main(){
+    int a[]={12,54,22,11,7},i;
+    int n=sizeof(a)/sizeof(a[0]);
+    insert(a,n);
+}
+------------------------------selection sort----------------------------
+#include <stdio.h> 
+void selection(int a[], int n) 
+{ 
+	int i, j, min; 
+	for (i = 0; i < n-1; i++) 
+	{ 
+		min = i; 
+		for (j = i+1; j < n; j++){
+		    if (a[j] < a[min]){ 
+			   min = j; 
+                    }
+                }
+		if(min != i){
+		    int temp = a[min];
+		    a[min]=a[i];
+		    a[i]= temp; 
+		}
+	} 
+	printf("Sorted array: \n");
+	for(i=0;i<n;i++){
+	    printf("%d ",a[i]);
+	}
+} 
+int main() 
+{ 
+	int a[] = {64, 25, 12, 22, 11}; 
+	int n = sizeof(a)/sizeof(a[0]); 
+	selection(a,n); 
+	return 0; 
+} 
